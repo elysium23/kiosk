@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PDF Fullscreen</title>
+  <title>PDF Viewer</title>
+  <script src="pdfobject.min.js"></script>
   <style>
     html, body {
       margin: 0;
       padding: 0;
     }
-    #pdf-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    #pdf-viewer {
       width: 100%;
       height: 100%;
     }
   </style>
-  <script>
-    function openFullscreen() {
-      var elem = document.getElementById("pdf-iframe");
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.mozRequestFullScreen) { /* Firefox */
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE/Edge */
-        elem.msRequestFullscreen();
-      }
-    }
-  </script>
 </head>
 <body>
-  <iframe id="pdf-iframe" onclick="openFullscreen()" src="https://elysium23.github.io/kiosk/ES.pdf"></iframe>
+  <div id="pdf-viewer"></div>
+  <script>
+    var pdf = new PDFObject({
+      url: "https://elysium23.github.io/kiosk/ES.pdf",
+      pdfOpenParams: {
+        view: "FitV",
+        pagemode: "none"
+      }
+    }).embed("pdf-viewer");
+  </script>
 </body>
 </html>

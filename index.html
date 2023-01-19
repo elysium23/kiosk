@@ -2,13 +2,12 @@
 <html>
 <head>
   <title>PDF Fullscreen</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
   <style>
     html, body {
       margin: 0;
       padding: 0;
     }
-    #pdf-container {
+    #pdf-iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -18,18 +17,8 @@
   </style>
 </head>
 <body>
-  <div id="pdf-container"></div>
+  <iframe id="pdf-iframe" src="https://app.box.com/embed/s/rfm8rtdntxqpiqwmnac358wxowrpmcab?sortColumn=date&view=list"></iframe>
   <script>
-    // URL of the PDF file
-    var url = 'https://app.box.com/s/rfm8rtdntxqpiqwmnac358wxowrpmcab';
-    // Embed the PDF
-    PDFObject.embed(url, "#pdf-container", {
-      pdfOpenParams: {
-        view: "FitV",
-        pagemode: "thumbs",
-        search: "lorem"
-      }
-    });
     document.addEventListener("touchstart", handleTouchStart, false);
     document.addEventListener("touchmove", handleTouchMove, false);
     var xDown = null;

@@ -15,10 +15,24 @@
       height: 100%;
     }
   </style>
+  <script>
+    function openFullscreen() {
+      var elem = document.getElementById("pdf-iframe");
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.mozRequestFullScreen) { /* Firefox */
+        elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE/Edge */
+        elem.msRequestFullscreen();
+      }
+    }
+  </script>
 </head>
 <body>
-  <iframe id="pdf-iframe" src="https://app.box.com/embed/s/rfm8rtdntxqpiqwmnac358wxowrpmcab?sortColumn=date&view=list"></iframe>
-  <script>
+  <iframe id="pdf-iframe" onclick="openFullscreen()" src="https://app.box.com/s/rfm8rtdntxqpiqwmnac358wxowrpmcab"></iframe>
+<script>
     document.addEventListener("touchstart", handleTouchStart, false);
     document.addEventListener("touchmove", handleTouchMove, false);
     var xDown = null;
@@ -35,13 +49,11 @@
       var yUp = evt.touches[0].clientY;
       var xDiff = xDown - xUp;
       var yDiff = yDown - yUp;
-      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) { /*most significant*/
         if ( xDiff > 0 ) {
           /* left swipe */
-          window.history.back();
         } else {
           /* right swipe */
-          window.history.forward();
         }
       }
       /* reset values */

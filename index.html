@@ -17,13 +17,12 @@
 <body>
   <div id="pdf-viewer"></div>
   <script>
-    var pdf = new PDFObject({
-      url: "https://elysium23.github.io/kiosk/ES.pdf",
-      pdfOpenParams: {
-        view: "FitV",
-        pagemode: "none"
-      }
-    }).embed("pdf-viewer");
-  </script>
+    var pdf = PDFObject.embed("https://elysium23.github.io/kiosk/ES.pdf", "#pdf-viewer", {
+        pdfOpenParams: {
+            view: "FitV",
+            pagemode: "none"
+        }
+    });
+</script>
 </body>
 </html>
